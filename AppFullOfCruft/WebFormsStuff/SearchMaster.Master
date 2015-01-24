@@ -1,0 +1,30 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="SearchMaster.master.cs" Inherits="AppFullOfCruft.WebFormsStuff.SearchMaster" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>
+        <asp:ContentPlaceHolder ID="PageTitle" runat="server">
+
+        </asp:ContentPlaceHolder>
+    </title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+        <link rel="stylesheet" href="<%=ResolveUrl("~/Css/styles.css") %>" type="text/css" />\
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <div>
+        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+
+        </asp:ContentPlaceHolder>
+    </div>
+    </form>
+
+    <asp:ContentPlaceHolder ID="JavaScriptContent" runat="server">
+
+    </asp:ContentPlaceHolder>
+
+</body>
+</html>
