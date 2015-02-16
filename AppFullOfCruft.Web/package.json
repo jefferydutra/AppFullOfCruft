@@ -1,0 +1,38 @@
+{
+  "name": "SmartSuite",
+  "version": "8.6.0",
+  "description": "",
+  "main": "tooltip.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browser": {
+    "jquery": "./js/vendor/jquery.js",
+    "jquery-ui": "./js/vendor/jquery-ui.js"
+  },
+  "browserify-shim": {
+    "jquery": "global:$",
+    "jquery-ui": "global:jquery-ui"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "browserify": "^7.0.2",
+    "browserify-shim": "^3.8.1",
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.0",
+    "gulp-notify": "^2.1.0",
+    "gulp-util": "^3.0.1",
+    "jshint-stylish": "^1.0.0",
+    "pretty-hrtime": "^0.2.2",
+    "require-dir": "^0.1.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.2.1"
+  }
+}
