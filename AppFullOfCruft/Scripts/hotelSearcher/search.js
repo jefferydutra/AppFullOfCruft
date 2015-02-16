@@ -176,12 +176,12 @@ $(document).on('click', ".cb-market", function () {
 
 function DisplayMyFlightsCriteria() {
     $('#tdMyFlight').show();
-    $('#divAllFlightCriteria').hide();
+    $('#hotelSearchCriteraContainer').hide();
 }
 
 function DisplayAllFlightsCriteria() {
     $('#tdMyFlight').hide();
-    $('#divAllFlightCriteria').show();
+    $('#hotelSearchCriteraContainer').show();
 }
 
 $(document).ready(function () {

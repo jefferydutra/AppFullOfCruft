@@ -23,9 +23,9 @@
                             <asp:ListItem Text="Waterloo" Value="Waterloo"/>
                         </asp:DropDownList>
                     </td>
-                    <td id="divAllFlightCriteria" valign="middle">
+                    <td id="hotelSearchCriteraContainer" valign="middle">
                         <div>
-                            <table id="tbAllFlightCriteria" style="table-layout: fixed; width: 100%;">
+                            <table id="hotelSearchCritera" style="table-layout: fixed; width: 100%;">
                                 <tr>
                                     <td style="width: 50px;">
                                         Guests
@@ -72,12 +72,20 @@
 </asp:Content>
 
 <asp:Content ID="Main" ContentPlaceHolderID="MainContent" runat="server">
-
+    <table>
+        <thead>
+            <tr>
+                <th>Like</th>
+                <th>Name</th>
+                <th>Area of town</th>
+            </tr>
+        </thead>
+    </table>
 </asp:Content>
 
 <asp:Content ID="JavaScript" ContentPlaceHolderID="JavaScriptContent" runat="server">
     <script src="../Scripts/hotelSearcher/search.js"></script>
-    <script type="text/javascript">+
+    <script type="text/javascript">
 
         function CriteriaSearch() {
             clearResults();
