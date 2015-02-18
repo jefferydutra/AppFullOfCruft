@@ -1,4 +1,6 @@
 var React = require("React");
+var SeriesList = require("./SeriesList.jsx");
+
 
 var NavigationTabs = React.createClass({
   getInitialState: function() {
@@ -22,7 +24,7 @@ var NavigationTabs = React.createClass({
     var currentNav;
 
     if (this.state.navType === "Series") {
-      currentNav = "series";
+      currentNav = <SeriesList/>;
     } else {
       currentNav = "other";
     }
