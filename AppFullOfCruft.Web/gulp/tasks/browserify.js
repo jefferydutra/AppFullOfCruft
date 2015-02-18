@@ -10,6 +10,7 @@
 
 var browserify = require('browserify');
 var watchify = require('watchify');
+var reactify = require('reactify');
 var bundleLogger = require('../util/bundleLogger');
 var gulp = require('gulp');
 var handleErrors = require('../util/handleErrors');
@@ -32,6 +33,7 @@ gulp.task('browserify', function (callback) {
             entries: bundleConfig.entries,
             // Add file extentions to make optional in your requires
             extensions: config.extensions,
+            transform: [reactify],
             // Enable source maps!
             debug: isDebug
         });

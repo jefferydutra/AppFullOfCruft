@@ -7,13 +7,9 @@ module.exports = {
         // A separate bundle will be generated for each
         // bundle config in the list below
         bundleConfigs: [{
-            entries: src + '/utilities/main.js',
+            entries: src + '/reactComponents.jsx',
             dest: dest,
-            outputName: 'utilities.js'
-        }, {
-            entries: src + '/ConstructorFunctions/main.js',
-            dest: dest,
-            outputName: 'constructorFunctions.js'
+            outputName: 'reactComponents.js'
         }]
     }
 };
