@@ -36,5 +36,10 @@
     "watchify": "^2.2.1",
     "react": "~0.12.2",
     "reactify": "~1.0.0"
+  },
+  "dependencies": {
+    "flux": "~2.0.1",
+    "object-assign": "~2.0.0",
+    "keymirror": "~0.1.1"
   }
 }
