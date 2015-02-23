@@ -1,23 +1,28 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var SeriesConstants = require('../constants/SeriesConstants');
-var SeriesWebApiUtils = require('../utils/SeriesWebApiUtlis.js');
-var SeriesUtils = require('../utils/SeriesUtils.js');
+var SeriesWebApiUtils = require('../utils/SeriesWebApiUtlis');
+var SeriesUtils = require('../utils/SeriesUtils');
 
 var SeriesActions = {
 
   /**
    * @param  {string} title
    */
-  create: function(title) {
+  create: function( title ) {
     AppDispatcher.handleViewAction({
       actionType: SeriesConstants.ActionTypes.SERIES_CREATE,
       text: title
     });
-    var series = SeriesUtils.getCreatedSeriesData(title);
-    // TODO SeriesWebApiUtils.
+    var series = SeriesUtils.getCreatedSeriesData( title );
+    SeriesWebApiUtils.postSeries( series );
   },
-
-  receiveAll: function(rawNodes) {
+  receiveCreatedSeries: function( createdSeries ){
+    AppDispatcher.handleServerAction({
+      type: SeriesConstants.ActionTypes.RECEIVE_RAW_CREATED_SERIES,
+      rawSeries: createdSeries
+    });
+  },
+  receiveAll: function( rawNodes ) {
     AppDispatcher.handleServerAction({
       type: SeriesConstants.ActionTypes.RECEIVE_RAW_MESSAGES,
       rawNodes: rawNodes

@@ -1,18 +1,33 @@
 /**
  * Created by Jeff on 21/02/2015.
  */
-var SeriesActionCreators = require('../actions/SeriesActionCreators');
+var SeriesActionCreators = require('../action/SeriesActionCreators');
+var SeriesUtils = require('../utils/SeriesUtils');
+var $ = require('jquery');
 
-module.exports = {
+var SeriesWebApiUtils = {
 
   getAllSeries: function() {
-    // simulate retrieving data from a database
-    var rawNodes = JSON.parse(localStorage.getItem('series'));
-    $.get( "http://localhost:35992/api/series")
-      .done(function(data) {
-        console.log( "second success" );
-        SeriesActionCreators.receiveAll(data);
+    $.get( "http://localhost:35992/api/series" )
+      .done(function( data) {
+        SeriesActionCreators.receiveAll( data );
       });
+  },
+  postSeries: function( title ) {
+    var series = SeriesUtils.getCreatedSeriesData( title );
+    $.ajax({
+      type: "POST",
+      url: "http://localhost:35992/api/series",
+      data: JSON.stringify(series),
+      contentType: "application/json"
+    })
+      .done(function( createdSeries ) {
+        SeriesActionCreators.receiveCreatedSeries(createdSeries);
+      });
+
+
   }
 
 };
+
+module.exports = SeriesWebApiUtils;

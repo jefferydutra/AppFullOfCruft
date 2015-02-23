@@ -16,7 +16,8 @@ module.exports = {
     SERIES_DESTROY: null,
     SERIES_DESTROY_COMPLETED: null,
     SERIES_UPDATE_TEXT: null,
-    RECEIVE_RAW_MESSAGES: null
+    RECEIVE_RAW_MESSAGES: null,
+    RECEIVE_RAW_CREATED_SERIES: null
   }),
   PayloadSources: keyMirror({
     SERVER_ACTION: null,

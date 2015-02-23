@@ -4,7 +4,8 @@
 module.exports = {
   getCreatedSeriesData: function(title) {
     return {
-      title: 'title'
+      "id" : 0,
+      "title": title
     };
   }
 };

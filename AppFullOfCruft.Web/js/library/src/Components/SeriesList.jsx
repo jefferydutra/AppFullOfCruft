@@ -1,6 +1,10 @@
 var React = require('React');
-var SeriesStore = require('./stores/SeriesStore.js');
+var SeriesStore = require('../stores/seriesStore');
 var SeriesListItem = require("./SeriesListItem.jsx");
+var ModalTrigger = require('react-bootstrap').ModalTrigger;
+var Button = require('react-bootstrap').Button;
+var SeriesAdd = require("./SeriesAdd.jsx");
+
 
 
 function getStateFromStores() {
@@ -29,16 +33,14 @@ var SeriesList = React.createClass({
     SeriesStore.removeChangeListener(this._onChange);
   },
   render: function(){
-    console.info("Series",this.state.series);
-
     var seriesListItems = this.state.series.map(getSeriesListItem);
     return (
       <div>
         <div className="row">
         <div className="col-md-12">
-          <div className="btn btn-block btn-info">
-            Add Series
-          </div>
+          <ModalTrigger modal={<SeriesAdd />}>
+            <Button bsStyle="primary" bsSize="large">Add Series</Button>
+          </ModalTrigger>
         </div>
       </div>
       {seriesListItems}

@@ -7,7 +7,7 @@ module.exports = {
         // A separate bundle will be generated for each
         // bundle config in the list below
         bundleConfigs: [{
-            entries: src + '/reactComponents.jsx',
+            entries: src + '/components/reactComponents.jsx',
             dest: dest,
             outputName: 'reactComponents.js'
         }]

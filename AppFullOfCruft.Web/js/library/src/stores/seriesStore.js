@@ -53,6 +53,13 @@ var SeriesStore = assign({}, EventEmitter.prototype, {
       };
     }, this);
   },
+  addSeries: function( rawSeries ) {
+    var seriesId = rawSeries.id;
+    _series[seriesId] = {
+      id: seriesId,
+      title: rawSeries.title
+    };
+  },
   getAll: function() {
     return _series;
   },
@@ -87,8 +94,8 @@ AppDispatcher.register(function( payload ) {
       SeriesStore.emitChange();
       break;
 
-    case SeriesConstants.ActionTypes.RECEIVE_RAW_MESSAGES:
-      SeriesStore.init( action.rawNodes );
+    case SeriesConstants.ActionTypes.RECEIVE_RAW_CREATED_SERIES:
+      SeriesStore.addSeries(action.rawSeries);
       SeriesStore.emitChange();
       break;
 
