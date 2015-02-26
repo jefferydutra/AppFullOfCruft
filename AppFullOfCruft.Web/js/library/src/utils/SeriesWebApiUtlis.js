@@ -1,19 +1,18 @@
 /**
  * Created by Jeff on 21/02/2015.
  */
-var SeriesActionCreators = require('../action/SeriesActionCreators');
 var SeriesUtils = require('../utils/SeriesUtils');
 var $ = require('jquery');
 
 var SeriesWebApiUtils = {
 
-  getAllSeries: function() {
+  getAllSeries: function( successCallback ) {
     $.get( "http://localhost:35992/api/series" )
       .done(function( data) {
-        SeriesActionCreators.receiveAll( data );
+        successCallback( data );
       });
   },
-  postSeries: function( title ) {
+  postSeries: function( title, successCallback ) {
     var series = SeriesUtils.getCreatedSeriesData( title );
     $.ajax({
       type: "POST",
@@ -22,7 +21,7 @@ var SeriesWebApiUtils = {
       contentType: "application/json"
     })
       .done(function( createdSeries ) {
-        SeriesActionCreators.receiveCreatedSeries(createdSeries);
+        successCallback(createdSeries);
       });
 
 

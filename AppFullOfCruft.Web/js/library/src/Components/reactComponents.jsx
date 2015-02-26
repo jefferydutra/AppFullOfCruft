@@ -1,6 +1,6 @@
 ﻿var React = require("React");
 var CharacterManager = require("./CharacterManager.jsx");
-var SeriesWebAPIUtils = require('../utils/SeriesWebApiUtlis');
+var SeriesActionCreators = require('../action/SeriesActionCreators');
 var Routes = require("../Components/App.jsx");
 var Router = require('react-router');
 var Series = require("./Series.jsx");
@@ -13,7 +13,7 @@ var Route = Router.Route;
 var RouteHandler = Router.RouteHandler;
 
 
-SeriesWebAPIUtils.getAllSeries();
+SeriesActionCreators.loadAll();
 
 window.reactElements = {};
 window.reactElements.loadCharacterManager= function(domId){

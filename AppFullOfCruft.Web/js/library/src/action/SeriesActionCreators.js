@@ -1,7 +1,6 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var SeriesConstants = require('../constants/SeriesConstants');
 var SeriesWebApiUtils = require('../utils/SeriesWebApiUtlis');
-var SeriesUtils = require('../utils/SeriesUtils');
 
 var SeriesActions = {
 
@@ -13,8 +12,7 @@ var SeriesActions = {
       actionType: SeriesConstants.ActionTypes.SERIES_CREATE,
       text: title
     });
-    var series = SeriesUtils.getCreatedSeriesData( title );
-    SeriesWebApiUtils.postSeries( series );
+    SeriesWebApiUtils.postSeries( title, SeriesActions.receiveCreatedSeries );
   },
   receiveCreatedSeries: function( createdSeries ){
     AppDispatcher.handleServerAction({
@@ -29,6 +27,9 @@ var SeriesActions = {
     });
   },
 
+  loadAll: function(){
+    SeriesWebApiUtils.getAllSeries(SeriesActions.receiveAll);
+  },
   /**
    * @param  {string} id The ID of the ToDo item
    * @param  {string} text

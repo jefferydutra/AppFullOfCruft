@@ -1,5 +1,5 @@
 var React = require("React");
-var SeriesWebAPIUtils = require('../utils/SeriesWebApiUtlis');
+var SeriesActionCreators = require('../action/SeriesActionCreators');
 var Modal = require('react-bootstrap').Modal;
 var Button = require('react-bootstrap').Button;
 var ENTER_KEY_CODE = 13;
@@ -32,7 +32,7 @@ var SeriesAdd = React.createClass({
       event.preventDefault();
       var text = this.state.text.trim();
       if (text) {
-        SeriesWebAPIUtils.postSeries(text);
+        SeriesActionCreators.create(text);
       }
       this.setState({text: ''});
     }
