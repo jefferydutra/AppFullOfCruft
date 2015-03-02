@@ -1,7 +1,5 @@
 ﻿var React = require("React");
-var CharacterManager = require("./CharacterManager.jsx");
 var SeriesActionCreators = require('../action/SeriesActionCreators');
-var Routes = require("../Components/App.jsx");
 var Router = require('react-router');
 var Series = require("./Series.jsx");
 var CharacterManager = require("./CharacterManager.jsx");
@@ -50,7 +48,7 @@ var routes = (
   <Route name="app" path="/" handler={App}>
     <Route name="series" path="/series/:id?" handler={Series}/>
     <Route name="calendar" handler={Series}/>
-    <DefaultRoute handler={CharacterManager}/>
+    <DefaultRoute handler={Series}/>
   </Route>
 );
 

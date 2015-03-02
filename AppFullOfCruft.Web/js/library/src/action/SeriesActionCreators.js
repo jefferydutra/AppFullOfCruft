@@ -12,12 +12,18 @@ var SeriesActions = {
       actionType: SeriesConstants.ActionTypes.SERIES_CREATE,
       text: title
     });
-    SeriesWebApiUtils.postSeries( title, SeriesActions.receiveCreatedSeries );
+    SeriesWebApiUtils.postSeries( title, SeriesActions.receiveCreatedSeries, SeriesActions.receiveValidationErrors );
   },
   receiveCreatedSeries: function( createdSeries ){
     AppDispatcher.handleServerAction({
       type: SeriesConstants.ActionTypes.RECEIVE_RAW_CREATED_SERIES,
       rawSeries: createdSeries
+    });
+  },
+  receiveValidationErrors: function( validationErrors ){
+    AppDispatcher.handleServerAction({
+      type: SeriesConstants.ActionTypes.RECEIVE_VALIDATION_ERRORS,
+      validationErrors: validationErrors
     });
   },
   receiveAll: function( rawNodes ) {

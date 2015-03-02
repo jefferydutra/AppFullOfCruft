@@ -9,30 +9,9 @@ var assign = require('object-assign');
 
 var CHANGE_EVENT = 'change';
 
-var _series
-  = [];
-
-/**
- * Delete a SERIES_COMPLETE item.
- * @param  {string} id
- */
-function destroy( id ) {
-  delete _series
-    [id];
-}
-
-/**
- * Delete all the completed SERIES_COMPLETE items.
- */
-function destroyCompleted() {
-  for (var id in _series
-    ) {
-    if (_series
-        [id].complete) {
-      destroy(id);
-    }
-  }
-}
+var
+  _series = [],
+  _validationErrors = [];
 
 var SeriesStore = assign({}, EventEmitter.prototype, {
   /**
@@ -80,6 +59,10 @@ var SeriesStore = assign({}, EventEmitter.prototype, {
    */
   removeChangeListener: function( callback ) {
     this.removeListener(CHANGE_EVENT, callback);
+  },
+
+  getAllValidationErrors: function(){
+    return _validationErrors;
   }
 });
 
@@ -99,13 +82,8 @@ AppDispatcher.register(function( payload ) {
       SeriesStore.emitChange();
       break;
 
-    case SeriesConstants.ActionTypes.SERIES_COMPLETE_DESTROY:
-      destroy( action.id );
-      SeriesStore.emitChange();
-      break;
-
-    case SeriesConstants.ActionTypes.SERIES_COMPLETE_DESTROY_COMPLETED:
-      destroyCompleted();
+    case SeriesConstants.ActionTypes.RECEIVE_VALIDATION_ERRORS:
+      _validationErrors = action.validationErrors;
       SeriesStore.emitChange();
       break;
 

@@ -2,6 +2,7 @@
  * Created by Jeff on 21/02/2015.
  */
 var SeriesUtils = require('../utils/SeriesUtils');
+var AjaxUtils = require("./AjaxUtils");
 var $ = require('jquery');
 
 var SeriesWebApiUtils = {
@@ -12,7 +13,7 @@ var SeriesWebApiUtils = {
         successCallback( data );
       });
   },
-  postSeries: function( title, successCallback ) {
+  postSeries: function( title, successCallback, errorCallback ) {
     var series = SeriesUtils.getCreatedSeriesData( title );
     $.ajax({
       type: "POST",
@@ -20,9 +21,13 @@ var SeriesWebApiUtils = {
       data: JSON.stringify(series),
       contentType: "application/json"
     })
-      .done(function( createdSeries ) {
-        successCallback(createdSeries);
-      });
+    .done(function( createdSeries ) {
+      successCallback(createdSeries, null);
+    })
+    .fail(function (jqXhr) {
+      var errors = AjaxUtils.getValidationErrorsFromJqXhr(jqXhr);
+      errorCallback(errors);
+    });
 
 
   }

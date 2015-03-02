@@ -11,9 +11,6 @@ var NavigationTabs = React.createClass({
     // of the passed down prop is to initialize something internally
     return {navType: this.props.intialNavType};
   },
-  componentDidMount: function() {
-    this.setState({navType: "Series"});
-  },
   render: function(){
     var selectedSeriesId = this.getParams().id;
     return (

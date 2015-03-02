@@ -29,7 +29,6 @@ var SeriesList = React.createClass({
   getInitialState: function () {
     return getStateFromStores();
   },
-
   componentDidMount: function(){
     SeriesStore.addChangeListener(this._onChange);
 
