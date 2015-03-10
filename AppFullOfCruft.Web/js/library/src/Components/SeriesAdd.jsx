@@ -3,13 +3,12 @@ var SeriesStore = require('../stores/seriesStore');
 var SeriesActionCreators = require('../action/SeriesActionCreators');
 var Modal = require('react-bootstrap').Modal;
 var Button = require('react-bootstrap').Button;
-var Navigation = require('react-router').Navigation;
+var Router = require('react-router');
 
 function getValidationErrors (){
   return SeriesStore.getAllValidationErrors();
 }
 var SeriesAdd = React.createClass({
-  mixins: [Navigation],
 
   getInitialState: function() {
     return {
@@ -47,9 +46,12 @@ var SeriesAdd = React.createClass({
     var errorMessages = getValidationErrors();
     if(!errorMessages || errorMessages.length === 0){
       this.setState({text: ''});
-      this.transitionTo('/series');
+      this.props.onRequestHide();
+      this.props.navigateBackToList();
     }
-    alert(errorMessages);
+    else {
+      alert(errorMessages);
+    }
   },
   _save: function(event) {
       event.preventDefault();

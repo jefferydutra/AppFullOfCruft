@@ -1,9 +1,8 @@
 ﻿var React = require("React");
 var SeriesActionCreators = require('../action/SeriesActionCreators');
+var CharacterActionCreators = require('../action/CharacterActionCreators');
 var Router = require('react-router');
 var Series = require("./Series.jsx");
-var CharacterManager = require("./CharacterManager.jsx");
-
 
 var DefaultRoute = Router.DefaultRoute;
 var Link = Router.Link;
@@ -12,6 +11,8 @@ var RouteHandler = Router.RouteHandler;
 
 
 SeriesActionCreators.loadAll();
+
+CharacterActionCreators.loadAll();
 
 window.reactElements = {};
 window.reactElements.loadCharacterManager= function(domId){

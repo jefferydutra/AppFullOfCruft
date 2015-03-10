@@ -2,6 +2,7 @@ var React = require("React");
 var ReactPropTypes = React.PropTypes;
 var Router = require('react-router');
 
+
 var Link = Router.Link;
 
 var PanelBody = React.createClass({
@@ -18,11 +19,11 @@ var PanelBody = React.createClass({
   }
 });
 var SeriesListItem = React.createClass({
+  mixins: [Router.Navigation, Router.State],
   propTypes: {
     series: ReactPropTypes.object
   },
   render: function(){
-
     var series = this.props.series;
     var selectedId = this.props.selectedSeriesId
                       ? parseInt(this.props.selectedSeriesId)
@@ -43,6 +44,7 @@ var SeriesListItem = React.createClass({
         <Link to="series" params={series}>{series.title}</Link>
 
         {panelBody}
+
       </div>
     );
   }

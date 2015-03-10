@@ -3,44 +3,44 @@
  */
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
-var SeriesConstants = require('../constants/SeriesConstants');
+var CharacterConstants = require('../constants/CharacterConstants');
 var assign = require('object-assign');
 
 
 var CHANGE_EVENT = 'change';
 
 var
-  _series = [],
+  _characters = [],
   _validationErrors = [];
 
-var SeriesStore = assign({}, EventEmitter.prototype, {
+var CharacterStore = assign({}, EventEmitter.prototype, {
   /**
    * Get the entire collection of SERIES_COMPLETEs.
    * @return {object}
    */
-  updateSeriesData: function( data ){
-    _series = data;
+  updateCharacterData: function( data ){
+    _characters = data;
     // tell the Component that this store changed
-    SeriesStore.emitChange();
+    CharacterStore.emitChange();
   },
   init: function( rawMessages ) {
     rawMessages.forEach(function( series ) {
       var seriesId = series.id;
-      _series[seriesId] = {
+      _characters[seriesId] = {
         id: seriesId,
         title: series.title
       };
     }, this);
   },
-  addSeries: function( rawSeries ) {
+  addCharacter: function( rawSeries ) {
     var seriesId = rawSeries.id;
-    _series[seriesId] = {
+    _characters[seriesId] = {
       id: seriesId,
       title: rawSeries.title
     };
   },
   getAll: function() {
-    return _series;
+    return _characters;
   },
 
   emitChange: function() {
@@ -72,19 +72,19 @@ AppDispatcher.register(function( payload ) {
 
   switch( action.type ) {
 
-    case SeriesConstants.ActionTypes.RECEIVE_RAW_MESSAGES:
-      SeriesStore.init( action.rawNodes );
-      SeriesStore.emitChange();
+    case CharacterConstants.ActionTypes.RECEIVE_RAW_MESSAGES:
+      CharacterStore.init( action.rawNodes );
+      CharacterStore.emitChange();
       break;
 
-    case SeriesConstants.ActionTypes.RECEIVE_RAW_CREATED_SERIES:
-      SeriesStore.addCharacter(action.rawSeries);
-      SeriesStore.emitChange();
+    case CharacterConstants.ActionTypes.RECEIVE_RAW_CREATED_SERIES:
+      CharacterStore.addCharacter( action.rawSeries );
+      CharacterStore.emitChange();
       break;
 
-    case SeriesConstants.ActionTypes.RECEIVE_VALIDATION_ERRORS:
+    case CharacterConstants.ActionTypes.RECEIVE_VALIDATION_ERRORS:
       _validationErrors = action.validationErrors;
-      SeriesStore.emitChange();
+      CharacterStore.emitChange();
       break;
 
     default:
@@ -92,4 +92,4 @@ AppDispatcher.register(function( payload ) {
   }
 });
 
-module.exports = SeriesStore;
+module.exports = CharacterStore;

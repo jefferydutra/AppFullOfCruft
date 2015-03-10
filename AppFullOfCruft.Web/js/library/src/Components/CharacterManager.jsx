@@ -1,19 +1,50 @@
 var React = require("React");
-var NavigationPane = require("./NavigationPane.jsx");
+var CharacterStore = require("../stores/characterStore");
+var CharacterItem = require("./CharacterItem.jsx");
+
+function getStateFromStores() {
+  return {
+    characters: CharacterStore.getAll()
+  };
+}
+
+function getCharacterRows(character) {
+  return (
+    <CharacterItem
+      key={character.id}
+      character={character}
+    />
+  );
+}
 
 var CharacterManager = React.createClass({
+  getInitialState: function () {
+    return getStateFromStores();
+  },
+  componentDidMount: function(){
+    CharacterStore.addChangeListener(this._onChange);
+  },
+  componentWillUnmount: function() {
+    CharacterStore.removeChangeListener(this._onChange);
+  },
   render: function() {
+    var characterRows = this.state.characters.map(getCharacterRows);
     return (
       <div className="row">
-        <div className="col-md-3">
-          <NavigationPane/>
-        </div>
-        <div className="col-md-9">
-          content
-        </div>
+        <table class="table table-striped">
+          <tr>
+            <td>Id</td>
+            <td>Title</td>
+          </tr>
+          {characterRows}
+        </table>
       </div>
     );
+  },
+  _onChange: function() {
+    this.setState(getStateFromStores());
   }
 });
 
 module.exports = CharacterManager;
+

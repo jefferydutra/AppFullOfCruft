@@ -46,7 +46,7 @@ var SeriesList = React.createClass({
       <div>
         <div className="row">
         <div className="col-md-12">
-          <ModalTrigger modal={<SeriesAdd />}>
+          <ModalTrigger modal={<SeriesAdd navigateBackToList={this._navigateAfterAdd} />}>
             <Button bsStyle="primary" bsSize="large">Add Series</Button>
           </ModalTrigger>
         </div>
@@ -57,6 +57,9 @@ var SeriesList = React.createClass({
   },
   _onChange: function() {
     this.setState(getStateFromStores());
+  },
+  _navigateAfterAdd: function() {
+    this.transitionTo('/series/');
   }
 });
 
