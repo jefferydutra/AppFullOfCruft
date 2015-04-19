@@ -2097,7 +2097,7 @@ intellisense.annotate(jQuery.fn, {
   },
   'promise': function() {
     /// <signature>
-    ///   <summary>Return a Promise object to observe when all actions of a certain type bound to the collection, queued or not, have finished.</summary>
+    ///   <summary>Return a Promise object to observe when all actionCreators of a certain type bound to the collection, queued or not, have finished.</summary>
     ///   <param name="type" type="String">The type of queue that needs to be observed.</param>
     ///   <param name="target" type="PlainObject">Object onto which the promise methods have to be attached</param>
     ///   <returns type="Promise" />
